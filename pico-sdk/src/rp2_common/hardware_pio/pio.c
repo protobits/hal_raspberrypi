@@ -96,7 +96,7 @@ bool pio_can_add_program_at_offset(PIO pio, const pio_program_t *program, uint o
 
 static void _pio_add_program_at_offset(PIO pio, const pio_program_t *program, uint offset) {
     if (!_pio_can_add_program_at_offset(pio, program, offset)) {
-        panic("No program space");
+        /*panic("No program space")*/;
     }
     for (uint i = 0; i < program->length; ++i) {
         uint16_t instr = program->instructions[i];
@@ -111,7 +111,7 @@ uint pio_add_program(PIO pio, const pio_program_t *program) {
     uint32_t save = hw_claim_lock();
     int offset = _pio_find_offset_for_program(pio, program);
     if (offset < 0) {
-        panic("No program space");
+        /*panic("No program space")*/;
     }
     _pio_add_program_at_offset(pio, program, (uint)offset);
     hw_claim_unlock(save);

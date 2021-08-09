@@ -448,7 +448,7 @@ typedef struct pio_program {
     const uint16_t *instructions;
     uint8_t length;
     int8_t origin; // required instruction memory origin or -1
-} __packed pio_program_t;
+} __attribute__((packed)) pio_program_t;
 
 /*! \brief Determine whether the given program can (at the time of the call) be loaded onto the PIO instance
  *  \ingroup hardware_pio

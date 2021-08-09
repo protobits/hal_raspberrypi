@@ -5,7 +5,7 @@ set(RP2040_DIR ${CMAKE_CURRENT_LIST_DIR}/src/rp2040)
 set(COMMON_DIR ${CMAKE_CURRENT_LIST_DIR}/src/common)
 
 set(BOOT_STAGE_DIR ${RP2_COMMON_DIR}/boot_stage2)
-
+set(PICO_SDK_PATH ${CMAKE_CURRENT_LIST_DIR})
 
 add_executable(boot_stage2 ${BOOT_STAGE_DIR}/${CONFIG_RP2_FLASH_BOOT_FILE})
 
@@ -34,6 +34,10 @@ zephyr_library_sources(boot_stage2.S
 	${RP2_COMMON_DIR}/hardware_xosc/xosc.c
 	${RP2_COMMON_DIR}/hardware_watchdog/watchdog.c
 	${RP2_COMMON_DIR}/hardware_gpio/gpio.c
+	${RP2_COMMON_DIR}/hardware_pio/pio.c
+	${RP2_COMMON_DIR}/hardware_dma/dma.c
+	${RP2_COMMON_DIR}/hardware_claim/claim.c
+	${RP2_COMMON_DIR}/hardware_sync/sync.c
 	${RP2_COMMON_DIR}/hardware_uart/uart.c
 	${RP2_COMMON_DIR}/pico_platform/platform.c
 )
@@ -47,6 +51,10 @@ zephyr_include_directories(
 	${RP2_COMMON_DIR}/hardware_vreg/include
 	${RP2_COMMON_DIR}/hardware_irq/include
 	${RP2_COMMON_DIR}/hardware_gpio/include
+	${RP2_COMMON_DIR}/hardware_claim/include
+	${RP2_COMMON_DIR}/hardware_sync/include
+	${RP2_COMMON_DIR}/hardware_pio/include
+	${RP2_COMMON_DIR}/hardware_dma/include
 	${RP2_COMMON_DIR}/hardware_sync/include
 	${RP2_COMMON_DIR}/hardware_uart/include
 	${RP2_COMMON_DIR}/hardware_timer/include
@@ -58,3 +66,6 @@ zephyr_include_directories(
 	${RP2_COMMON_DIR}/pico_platform/include
 	${CMAKE_CURRENT_LIST_DIR}
 )
+
+list(APPEND CMAKE_MODULE_PATH ${ZEPHYR_RASPBERRYPI_CMAKE_DIR}/pico-sdk/tools)
+find_package(Pioasm REQUIRED)

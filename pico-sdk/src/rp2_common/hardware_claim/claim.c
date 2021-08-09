@@ -50,7 +50,7 @@ int hw_claim_unused_from_range(uint8_t *bits, bool required, uint bit_lsb, uint 
     }
     hw_claim_unlock(save);
     if (found_bit < 0 && required) {
-        panic(message);
+        //panic(message);
     }
     return found_bit;
 }
