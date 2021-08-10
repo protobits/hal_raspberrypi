@@ -40,6 +40,7 @@ zephyr_library_sources(boot_stage2.S
 	${RP2_COMMON_DIR}/hardware_sync/sync.c
 	${RP2_COMMON_DIR}/hardware_uart/uart.c
 	${RP2_COMMON_DIR}/pico_platform/platform.c
+	${RP2_COMMON_DIR}/pico_bootrom/bootrom.c
 )
 
 zephyr_include_directories(
@@ -64,6 +65,7 @@ zephyr_include_directories(
 	${COMMON_DIR}/pico_base/include
 	${COMMON_DIR}/pico_binary_info/include
 	${RP2_COMMON_DIR}/pico_platform/include
+	${RP2_COMMON_DIR}/pico_bootrom/include
 	${CMAKE_CURRENT_LIST_DIR}
 )
 
